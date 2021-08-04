@@ -1,8 +1,9 @@
 /*
  *	 bootsect.s		Copyright (C) 1991, 1992 Linus Torvalds
- *
+ * --注：bootsect.s	是linux系统的引导程序：参看https://blog.csdn.net/qq_26025363/article/details/72551863
  * bootsect.s is loaded at 0x7c00 by the bios-startup routines, and moves
  * itself out of the way to address 0x90000, and jumps there.
+ *--注 0x7c00：参看http://www.ruanyifeng.com/blog/2015/09/0x7c00.html
  *
  * It then loads 'setup' directly after itself (0x90200), and the system
  * at 0x10000, using BIOS interrupts.

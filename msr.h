@@ -12,9 +12,12 @@
 #define EFAULT	14 /* Bad address */
 
 #define rdmsr(msr,val1,val2) \
-     __asm__ __volatile__("rdmsr" \
-			  : "=a" (val1), "=d" (val2) \
-			  : "c" (msr) : "edi")
+     //__asm__ __volatile__("rdmsr" \
+			  //: "=a" (val1), "=d" (val2) \
+			  //: "c" (msr) : "edi")
+//__asm { "rdmsr" \
+//			 : "=a" (val1), "=d" (val2) \
+//			 : "c" (msr) : "edi" }
 
 /*
 #define rdmsr_safe(msr,val1,val2) ({\
@@ -33,9 +36,13 @@
 */
 
 #define wrmsr(msr,val1,val2) \
-     __asm__ __volatile__("wrmsr" \
-			  : /* no outputs */ \
-			  : "c" (msr), "a" (val1), "d" (val2))
+     //__asm__ __volatile__("wrmsr" \
+			  //: /* no outputs */ \
+			  //: "c" (msr), "a" (val1), "d" (val2))
+
+//__asm__ __volatile__("wrmsr" \
+			  //: /* no outputs */ \
+			  //: "c" (msr), "a" (val1), "d" (val2))
 
 #define rdtsc(low,high) \
      __asm__ __volatile__("rdtsc" : "=a" (low), "=d" (high))

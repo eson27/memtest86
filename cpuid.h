@@ -11,37 +11,37 @@
 
 extern struct cpu_ident cpu_id;
 
-static inline void __cpuid(unsigned int *eax, unsigned int *ebx,
-                                unsigned int *ecx, unsigned int *edx)
+static inline void cpuid(unsigned int *a, unsigned int *b,
+                                unsigned int *c, unsigned int *d)
 {
         /* ecx is often an input as well as an output. */
-        asm volatile("\t"
-      	    "push %%ebx; cpuid; mov %%ebx, %%edi; pop %%ebx"
-            : "=a" (*eax),
-              "=D" (*ebx),
-              "=c" (*ecx),
-              "=d" (*edx)
-            : "0" (*eax), "2" (*ecx));
-}
+//        __asm__ __volatile__("\t"
+//      	    "push %%ebx; cpuid; mov %%ebx, %%edi; pop %%ebx"
+//            : "=a" (*eax),
+//              "=D" (*ebx),
+//              "=c" (*ecx),
+//              "=d" (*edx)
+//            : "0" (*eax), "2" (*ecx));
+//}
 
-static inline void cpuid(unsigned int op,
-                         unsigned int *eax, unsigned int *ebx,
-                         unsigned int *ecx, unsigned int *edx)
-{
-        *eax = op;
-        *ecx = 0;
-        __cpuid(eax, ebx, ecx, edx);
-}
+//static inline void cpuid(unsigned int op,
+//                         unsigned int *eax, unsigned int *ebx,
+//                         unsigned int *ecx, unsigned int *edx)
+//{
+//        *eax = op;
+//        *ecx = 0;
+//        __cpuid(eax, ebx, ecx, edx);
+//}
 
 /* Some CPUID calls want 'count' to be placed in ecx */
-static inline void cpuid_count(unsigned int op, int count,
-                               unsigned int *eax, unsigned int *ebx,
-                               unsigned int *ecx, unsigned int *edx)
-{
-        *eax = op;
-        *ecx = count;
-        __cpuid(eax, ebx, ecx, edx);
-}
+//static inline void cpuid_count(unsigned int op, int count,
+//                               unsigned int *eax, unsigned int *ebx,
+//                               unsigned int *ecx, unsigned int *edx)
+//{
+//        *eax = op;
+//        *ecx = count;
+//        __cpuid(eax, ebx, ecx, edx);
+//}
 
 /* Typedef for storing the Cache Information */
 typedef union {
